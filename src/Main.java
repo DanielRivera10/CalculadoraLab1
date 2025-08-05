@@ -1,12 +1,10 @@
 
 
-
 public class Main {
     public static void main(String[] args) {
 
-
-        System.out.println("Hola mundo");
-
+        Calculadora calculadora = new Calculadora();
+        calculadora.calculator();
 
     }
 }

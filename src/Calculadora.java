@@ -1,42 +1,132 @@
+import java.util.Scanner;
+
 public class Calculadora {
 
-    //Suma
-    public static double suma (double a, double b){
+    private double actualNumber;
+    boolean flag = true;
+    private final Scanner scanner = new Scanner(System.in);
 
-        return a+b;
+    public void calculator (){
+
+        restore();
+        System.out.println("##### Calculadora ######");
+        System.out.println("""
+                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+                ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⢻⡻⠿⣿⣿⣿⣿⣿⣿⣿⣿
+                ⣿⣿⣿⣿⣿⣿⣟⣫⡾⠛⠛⠛⠛⠛⠛⠿⣾⣽⡻⣿⣿⣿⣿⣿
+                ⣿⣿⣿⣿⣿⡟⣼⠏⠄⠄⠄⠄⠄⠄⣀⣀⡀⣙⣿⣎⢿⣿⣿⣿
+                ⣿⣿⣿⣿⣿⢹⡟⠄⠄⠄⣰⡾⠟⠛⠛⠛⠛⠛⠛⠿⣮⡻⣿⣿
+                ⣿⡿⢟⣻⣟⣽⠇⠄⠄⠄⣿⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢿⡹⣿
+                ⡟⣼⡟⠉⠉⣿⠄⠄⠄⠄⢿⡄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣼⢟⣿
+                ⣇⣿⠁⠄⠄⣿⠄⠄⠄⠄⠘⢿⣦⣄⣀⣀⣀⣀⣤⡴⣾⣏⣾⣿
+                ⡇⣿⠄⠄⠄⣿⠄⠄⠄⠄⠄⠄⠈⠉⠛⠋⠉⠉⠄⠄⢻⣿⣿⣿
+                ⢃⣿⠄⠄⠄⣿⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸⣧⣿⣿
+                ⡻⣿⠄⠄⠄⣿⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣸⣧⣿⣿
+                ⡇⣿⠄⠄⠄⣿⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣿⢹⣿⣿
+                ⣿⡸⢷⣤⣤⣿⡀⠄⠄⠄⠄⢠⣤⣄⣀⣀⣀⠄⠄⢠⣿⣿⣿⣿
+                ⣿⣿⣷⣿⣷⣿⡇⠄⠄⠄⠄⢸⡏⡍⣿⡏⠄⠄⠄⢸⡏⣿⣿⣿
+                ⣿⣿⣿⣿⣿⢼⡇⠄⠄⠄⠄⣸⡇⣷⣻⣆⣀⣀⣀⣼⣻⣿⣿⣿
+                ⣿⣿⣿⣿⣿⣜⠿⢦⣤⣤⡾⢟⣰⣿⣷⣭⣯⣭⣯⣥⣿⣿⣿⣿
+                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿""");
+        System.out.print("Digita numero ");
+        actualNumber = scanner.nextInt();
+        do{
+
+            System.out.println("elige ");
+            System.out.println("1. suma");
+            System.out.println("2. resta");
+            System.out.println("3. multi");
+            System.out.println("4. divi");
+            int option = scanner.nextInt();
+
+            switch (option){
+                case 1 : suma(operatorsOptions("suma", "+"));
+                break;
+                case 2 : resta(operatorsOptions("resta", "-"));
+                break;
+                case 3 : multiplicacion(operatorsOptions("multiplicacion", "*"));
+                break;
+                case 4 : division(operatorsOptions("division", "/"));
+                break;
+            }
+        }while (flag);
+    }
+
+    public double operatorsOptions(String option, String operator) {
+        System.out.println(option);
+        System.out.println("-----------");
+        System.out.print(actualNumber + " " + operator + " ");
+        return scanner.nextInt();
+
+    }
+
+    public void showCalculator(){
+        System.out.printf(
+                "  ╔══════════════════════════════════════════════════════════════╗%n" +
+                        "  ║ ████████████████████████████████████████████████████████████ ║%n" +
+                        "  ║ █ %-56s █ ║%n" +
+                        "  ║ ████████████████████████████████████████████████████████████ ║%n" +
+                        "  ║ ┌───────┬───────┬───────┬───────┐                           ║%n" +
+                        "  ║ │   7   │   8   │   9   │   +   │                           ║%n" +
+                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
+                        "  ║ │   4   │   5   │   6   │   -   │                           ║%n" +
+                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
+                        "  ║ │   1   │   2   │   3   │   ×   │                           ║%n" +
+                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
+                        "  ║ │   .   │   0   │   =   │   ÷   │                           ║%n" +
+                        "  ║ └───────┴───────┴───────┴───────┘                           ║%n" +
+                        "  ╚══════════════════════════════════════════════════════════════╝%n",
+                actualNumber
+        );
+    }
+
+
+    //Suma
+    public void suma (double b){
+        actualNumber = actualNumber+b;
+        showCalculator();
     }
     //Resta
-    public static double resta(double a, double b){
-
-        return a-b;
+    public void resta(double b){
+        actualNumber = actualNumber-b;
+        showCalculator();
     }
     //Multiplicacion
-    public static double multiplicacion(double a, double b){
-
-        return a*b;
+    public void multiplicacion(double b){
+        actualNumber = actualNumber*b;
+        showCalculator();
     }
     //Division
-    public static double division(double a, double b){
+    public void division(double b){
+        if (b == 0){
+            System.out.println("error");
+        }else{
+            actualNumber = actualNumber/b;
+            showCalculator();
+        }
 
-        return a/b;
     }
     //Seno
-    public static double seno(double a){
+    public void seno(double a){
 
-        return Math.sin(a);
+        actualNumber = Math.sin(a);
     }
     //Coseno
-    public static double coseno(double a){
+    public void coseno(double a){
 
-        return Math.cos(a);
+        actualNumber = Math.cos(a);
     }
     //Tangente
-    public static double tangente(double a){
+    public void tangente(double a){
 
-        return Math.tan(a);
+        actualNumber = Math.tan(a);
     }
     //Serie de fibonacci (Calcula el n-ésimo número de la serie de Fibonacci)
-    public static int fibonacci(int n) {
+    public int fibonacci(int n) {
+        if (actualNumber == 0) {
+            System.out.println("error");
+        }
+        n = (int) actualNumber;
         int a = 0, b = 1;
         for (int i = 2; i <= n; i++) {
             int val = a + b;
@@ -46,9 +136,20 @@ public class Calculadora {
         return (n == 0) ? a : b;
     }
 
+    public void restore(){
+        actualNumber = 0;
+    }
 
 
+    public double getActualNumber() {
+        return actualNumber;
+    }
 
+    public void setActualNumber(double number){
+        this.actualNumber = number;
+    }
+
+// 0 -> /5 -> summa -> #1 ->
 
 
 }

@@ -135,6 +135,39 @@ public class Calculadora {
         }
         return (n == 0) ? a : b;
     }
+    // factorial
+    public static long factorial (int n) {
+        if (n < 0){
+            System.out.println("El factorial no está definido para números negativos.");
+        }
+        long resultado = 1;
+        for (int i = 1; i <= n; i++) {
+            resultado *= i;
+        }
+        return resultado;
+    }
+    //minimo comun multiplo necesita de maximo para funcionar
+    public void mcm(int b) {
+        actualNumber= Math.abs(actualNumber * b) / mcd(actualNumber, b);
+    }
+
+    //este codigo de maximo sale de chatgpt y hace funcionar al minimo :)
+    public static int mcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return Math.abs(a);
+    }
+
+    //potencia enecima
+    public static double potencia(double a, int b) {
+        return Math.pow(a,b);
+    }
+
+
+
 
     public void restore(){
         actualNumber = 0;
@@ -149,7 +182,6 @@ public class Calculadora {
         this.actualNumber = number;
     }
 
-// 0 -> /5 -> summa -> #1 ->
 
 
 }

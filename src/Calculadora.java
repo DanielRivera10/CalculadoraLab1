@@ -1,14 +1,16 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Calculadora {
 
     private double actualNumber;
+    private String operation = "";
     boolean flag = true;
     private final Scanner scanner = new Scanner(System.in);
 
     public void calculator (){
 
-        restore();
+
         System.out.println("##### Calculadora ######");
         System.out.println("""
                 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -30,54 +32,112 @@ public class Calculadora {
                 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿""");
         System.out.print("Digita numero ");
         actualNumber = scanner.nextInt();
+        showCalculator();
         do{
 
-            System.out.println("elige ");
-            System.out.println("1. suma");
-            System.out.println("2. resta");
-            System.out.println("3. multi");
-            System.out.println("4. divi");
             int option = scanner.nextInt();
 
             switch (option){
-                case 1 : suma(operatorsOptions("suma", "+"));
+                case 0 : restore();
                 break;
-                case 2 : resta(operatorsOptions("resta", "-"));
+                case 1 : suma(operatorsOptions("suma", "+", true));
                 break;
-                case 3 : multiplicacion(operatorsOptions("multiplicacion", "*"));
+                case 2 : resta(operatorsOptions("resta", "-", true));
                 break;
-                case 4 : division(operatorsOptions("division", "/"));
+                case 3 : multiplicacion(operatorsOptions("multiplicacion", "*", true));
                 break;
+                case 4 : division(operatorsOptions("division", "/", true));
+                break;
+                case 5 : mcm(operatorsOptions("MCM", "MCM", true));
+                break;
+                case 6 : mcd(actualNumber, operatorsOptions("MCD", "MCD", true), true);
+                break;
+                case 7 : fibonacci(operatorsOptions("Fibonacci", "Fibonacci", false));
+                break;
+                case 8 : seno(operatorsOptions("Seno", "", false));
+                break;
+                case 9 : coseno(operatorsOptions("Coseno", "", false));
+                break;
+                case 10 : tangente(operatorsOptions("Tangente", "", false));
+                    break;
+                case 11 : factorial(operatorsOptions("Factorial", "",false));
+                    break;
+                case 12 : potencia(operatorsOptions("Potencia", "Potencia", true));
+                    break;
             }
         }while (flag);
     }
 
-    public double operatorsOptions(String option, String operator) {
-        System.out.println(option);
-        System.out.println("-----------");
-        System.out.print(actualNumber + " " + operator + " ");
-        return scanner.nextInt();
+    public double operatorsOptions(String option, String operator, boolean isNumberRequired) {
+        if (isNumberRequired){
+            System.out.println("Escribe el numero de " + option);
+            int operatorOptionSelected =  scanner.nextInt();
+            DecimalFormat df = new DecimalFormat("#.##########");
+            operation = df.format(actualNumber) +  " " + operator + " " + operatorOptionSelected + " = ";
+            return operatorOptionSelected;
+        }else {
+            DecimalFormat df = new DecimalFormat("#.##########");
+            operation = option + " : " + df.format(actualNumber) + " = ";
+            return actualNumber;
+        }
 
     }
 
     public void showCalculator(){
-        System.out.printf(
-                "  ╔══════════════════════════════════════════════════════════════╗%n" +
-                        "  ║ ████████████████████████████████████████████████████████████ ║%n" +
-                        "  ║ █ %-56s █ ║%n" +
-                        "  ║ ████████████████████████████████████████████████████████████ ║%n" +
-                        "  ║ ┌───────┬───────┬───────┬───────┐                           ║%n" +
-                        "  ║ │   7   │   8   │   9   │   +   │                           ║%n" +
-                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
-                        "  ║ │   4   │   5   │   6   │   -   │                           ║%n" +
-                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
-                        "  ║ │   1   │   2   │   3   │   ×   │                           ║%n" +
-                        "  ║ ├───────┼───────┼───────┼───────┤                           ║%n" +
-                        "  ║ │   .   │   0   │   =   │   ÷   │                           ║%n" +
-                        "  ║ └───────┴───────┴───────┴───────┘                           ║%n" +
-                        "  ╚══════════════════════════════════════════════════════════════╝%n",
-                actualNumber
-        );
+        String[] options = {
+                "0. Reestablecer",
+                "1. Suma",
+                "2. Resta",
+                "3. Multiplicacion",
+                "4. Division",
+                "5. MCM",
+                "6. MCD",
+                "7. Fibonacci",
+                "8. Seno (grados)",
+                "9. Coseno (grados)",
+                "10. Tangente (grados)",
+                "11. Factorial",
+                "12. Potencia",
+        };
+
+        DecimalFormat df = new DecimalFormat("#.##########"); // Hasta 10 decimales máx.
+        String screen = operation + df.format(actualNumber);
+
+        System.out.println("  ╔════════════════════════════════════════════════════════════════╗");
+        System.out.println("  ║ ███████████████████████████████████████████████████████████████║");
+        System.out.printf ("  ║ █ %-56s   ██║%n", screen);
+        System.out.println("  ║ ███████████████████████████████████████████████████████████████║");
+
+// Botones base
+        String[] buttons = {
+                "┌───────┬───────┬───────┬───────┐",
+                "│   7   │   8   │   9   │   +   │",
+                "├───────┼───────┼───────┼───────┤",
+                "│   4   │   5   │   6   │   -   │",
+                "├───────┼───────┼───────┼───────┤",
+                "│   1   │   2   │   3   │   ×   │",
+                "├───────┼───────┼───────┼───────┤",
+                "│   .   │   0   │   =   │   ÷   │",
+                "└───────┴───────┴───────┴───────┘"
+        };
+
+// Dibujar botones y las opciones al lado
+        int maxLineas = Math.max(buttons.length, options.length);
+        for (int i = 0; i < maxLineas; i++) {
+            if (i < buttons.length) {
+                // si hay un boton al lado
+                String boton = buttons[i];
+                String opcion = i < options.length ? options[i] : "";
+                System.out.printf("  ║ %-31s │  %-25s ║%n", boton, opcion);
+            } else {
+                // si no hay boton al lado
+                // se formatea al 33 para evitar las lineas donde no son
+                String opcion = i < options.length ? options[i] : "";
+                System.out.printf("  ║ %-33s │  %-25s ║%n", "", opcion);
+            }
+        }
+
+        System.out.println("  ╚════════════════════════════════════════════════════════════════╝");
     }
 
 
@@ -109,79 +169,92 @@ public class Calculadora {
     //Seno
     public void seno(double a){
 
-        actualNumber = Math.sin(a);
+        actualNumber = Math.sin(Math.toRadians(a));
+        showCalculator();
     }
     //Coseno
     public void coseno(double a){
 
-        actualNumber = Math.cos(a);
+        actualNumber = Math.cos(Math.toRadians(a));
+        showCalculator();
     }
     //Tangente
     public void tangente(double a){
 
-        actualNumber = Math.tan(a);
+        actualNumber = Math.tan(Math.toRadians(a));
+        showCalculator();
     }
-    //Serie de fibonacci (Calcula el n-ésimo número de la serie de Fibonacci)
-    public int fibonacci(int n) {
-        if (actualNumber == 0) {
-            System.out.println("error");
-        }
+    //Serie de fibonacci (Calcula el n-ésimo número de  la serie de Fibonacci)
+    public void fibonacci(double n) {
         n = (int) actualNumber;
+        if (n == 0) {
+            System.out.println("error");
+            return;
+        }
         int a = 0, b = 1;
         for (int i = 2; i <= n; i++) {
             int val = a + b;
             a = b;
             b = val;
         }
-        return (n == 0) ? a : b;
+        if (n == 0) {
+            actualNumber = a;
+        }else {
+            actualNumber = b;
+        }
+        showCalculator();
     }
     // factorial
-    public static long factorial (int n) {
+    public void factorial (double n) {
         if (n < 0){
             System.out.println("El factorial no está definido para números negativos.");
+            return;
         }
         long resultado = 1;
         for (int i = 1; i <= n; i++) {
             resultado *= i;
         }
-        return resultado;
+        actualNumber = resultado;
+        showCalculator();
     }
+
     //minimo comun multiplo necesita de maximo para funcionar
-    public void mcm(int b) {
-        actualNumber= Math.abs(actualNumber * b) / mcd(actualNumber, b);
+    public void mcm(double b) {
+        actualNumber= Math.abs(actualNumber * b) / mcd(actualNumber, b, false);
+        showCalculator();
     }
 
     //este codigo de maximo sale de chatgpt y hace funcionar al minimo :)
-    public static int mcd(int a, int b) {
+    public double mcd(double a, double b, boolean showCalculator) {
         while (b != 0) {
-            int temp = b;
+            double temp = b;
             b = a % b;
             a = temp;
         }
-        return Math.abs(a);
+        //return Math.abs(a);
+        actualNumber = a;
+        if (showCalculator){
+            showCalculator();
+        }
+
+        return a;
+
+
     }
 
     //potencia enecima
-    public static double potencia(double a, int b) {
-        return Math.pow(a,b);
+    public void potencia(double b) {
+        actualNumber =  Math.pow(actualNumber, b);
+        showCalculator();
     }
-
-
 
 
     public void restore(){
-        actualNumber = 0;
+        System.out.println("Escribe un numero");
+        actualNumber = scanner.nextInt();
+        operation = "";
+        showCalculator();
     }
-
-
-    public double getActualNumber() {
-        return actualNumber;
-    }
-
-    public void setActualNumber(double number){
-        this.actualNumber = number;
-    }
-
 
 
 }

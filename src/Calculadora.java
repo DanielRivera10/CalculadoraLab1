@@ -30,7 +30,7 @@ public class Calculadora {
                 ⣿⣿⣿⣿⣿⢼⡇⠄⠄⠄⠄⣸⡇⣷⣻⣆⣀⣀⣀⣼⣻⣿⣿⣿
                 ⣿⣿⣿⣿⣿⣜⠿⢦⣤⣤⡾⢟⣰⣿⣷⣭⣯⣭⣯⣥⣿⣿⣿⣿
                 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿""");
-        System.out.print("Digita numero ");
+        System.out.print("Digite el primer valor:  ");
         actualNumber = scanner.nextInt();
         showCalculator();
         do{
@@ -39,30 +39,56 @@ public class Calculadora {
 
             switch (option){
                 case 0 : restore();
-                break;
+                    break;
                 case 1 : suma(operatorsOptions("suma", "+", true));
-                break;
+                    break;
                 case 2 : resta(operatorsOptions("resta", "-", true));
-                break;
+                    break;
                 case 3 : multiplicacion(operatorsOptions("multiplicacion", "*", true));
-                break;
+                    break;
                 case 4 : division(operatorsOptions("division", "/", true));
-                break;
+                    break;
                 case 5 : mcm(operatorsOptions("MCM", "MCM", true));
-                break;
+                    break;
                 case 6 : mcd(actualNumber, operatorsOptions("MCD", "MCD", true), true);
-                break;
+                    break;
                 case 7 : fibonacci(operatorsOptions("Fibonacci", "Fibonacci", false));
-                break;
+                    break;
                 case 8 : seno(operatorsOptions("Seno", "", false));
-                break;
+                    break;
                 case 9 : coseno(operatorsOptions("Coseno", "", false));
-                break;
+                    break;
                 case 10 : tangente(operatorsOptions("Tangente", "", false));
                     break;
                 case 11 : factorial(operatorsOptions("Factorial", "",false));
                     break;
                 case 12 : potencia(operatorsOptions("Potencia", "Potencia", true));
+                    break;
+                case 13: raiz(operatorsOptions("Raiz", "raiz", true));
+                    break;
+                case 14: iva(operatorsOptions("porcentaje del iva", "%", true));
+                    break;
+                default:
+                    System.out.print(""" 
+                                                                               FIN DE LA CALCULADORA
+                                                                               
+                                                             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠒⠒⠢⢄⡀⠀⠀⢠⡏⠉⠉⠉⠑⠒⠤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠙⢦⠀⡇⡇⠀⠀⠀⠀⠀⠀⠈⠱⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠊⠉⠉⠙⠒⢤⡀⠀⣼⠀⠀⢀⣶⣤⠀⠀⠀⢣⡇⡇⠀⠀⢴⣶⣦⠀⠀⠀⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⠀⠀⠀⢀⣠⠤⢄⠀⠀⢰⡇⠀⠀⣠⣀⠀⠀⠈⢦⡿⡀⠀⠈⡟⣟⡇⠀⠀⢸⡇⡆⠀⠀⡼⢻⣠⠀⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⠀⢀⠖⠉⠀⠀⠀⣱⡀⡞⡇⠀⠀⣿⣿⢣⠀⠀⠈⣧⣣⠀⠀⠉⠋⠀⠀⠀⣸⡇⠇⠀⠀⠈⠉⠀⠀⠀⢀⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⣠⠏⠀⠀⣴⢴⣿⣿⠗⢷⡹⡀⠀⠘⠾⠾⠀⠀⠀⣿⣿⣧⡀⠀⠀⠀⢀⣴⠇⣇⣆⣀⢀⣀⣀⣀⣀⣤⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⣿⠀⠀⢸⢻⡞⠋⠀⠀⠀⢿⣷⣄⠀⠀⠀⠀⠀⣠⡇⠙⢿⣽⣷⣶⣶⣿⠋⢰⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                              ⡿⡄⠀⠈⢻⣝⣶⣶⠀⠀⠀⣿⣿⣱⣶⣶⣶⣾⡟⠀⠀⠀⢈⡉⠉⢩⡖⠒⠈⠉⡏⡴⡏⠉⠉⠉⠉⠉⠉⠉⠉⡇⠀⠀⢀⣴⠒⠢⠤⣀
+                                                              ⢣⣸⣆⡀⠀⠈⠉⠁⠀⠀⣠⣷⠈⠙⠛⠛⠛⠉⢀⣴⡊⠉⠁⠈⢢⣿⠀⠀⠀⢸⠡⠀⠁⠀⠀⠀⣠⣀⣀⣀⣀⡇⠀⢰⢁⡇⠀⠀⠀⢠
+                                                              ⠀⠻⣿⣟⢦⣤⡤⣤⣴⣾⡿⢃⡠⠔⠒⠉⠛⠢⣾⢿⣿⣦⡀⠀⠀⠉⠀⠀⢀⡇⢸⠀⠀⠀⠀⠀⠿⠿⠿⣿⡟⠀⢀⠇⢸⠀⠀⠀⠀⠘
+                                                              ⠀⠀⠈⠙⠛⠿⠿⠿⠛⠋⢰⡋⠀⠀⢠⣤⡄⠀⠈⡆⠙⢿⣿⣦⣀⠀⠀⠀⣜⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢀⠃⠀⡸⠀⠇⠀⠀⠀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⢣⠀⠀⠈⠛⠁⠀⢴⠥⡀⠀⠙⢿⡿⡆⠀⠀⢸⠀⢸⢰⠀⠀⠀⢀⣿⣶⣶⡾⠀⢀⠇⣸⠀⠀⠀⠀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⡀⢇⠀⠀⠀⢀⡀⠀⠀⠈⢢⠀⠀⢃⢱⠀⠀⠀⡇⢸⢸⠀⠀⠀⠈⠉⠉⠉⢱⠀⠼⣾⣿⣿⣷⣦⠴⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⠘⡄⠀⠀⢹⣿⡇⠀⠀⠈⡆⠀⢸⠈⡇⢀⣀⣵⢨⣸⣦⣤⣤⣄⣀⣀⣀⡞⠀⣠⡞⠉⠈⠉⢣⡀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢃⠘⡄⠀⠀⠉⠀⠀⣠⣾⠁⠀⠀⣧⣿⣿⡿⠃⠸⠿⣿⣿⣿⣿⣿⣿⠟⠁⣼⣾⠀⠀⠀⠀⢠⠇⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠹⣀⣀⣤⣶⣿⡿⠃⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⢻⣿⣷⣦⣤⣤⠎⠀⠀⠀
+                                                              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣤⣿⡿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀ """);
                     break;
             }
         }while (flag);
@@ -70,7 +96,7 @@ public class Calculadora {
 
     public double operatorsOptions(String option, String operator, boolean isNumberRequired) {
         if (isNumberRequired){
-            System.out.println("Escribe el numero de " + option);
+            System.out.print("Escribe el numero de " + option+": ");
             int operatorOptionSelected =  scanner.nextInt();
             DecimalFormat df = new DecimalFormat("#.##########");
             operation = df.format(actualNumber) +  " " + operator + " " + operatorOptionSelected + " = ";
@@ -98,6 +124,9 @@ public class Calculadora {
                 "10. Tangente (grados)",
                 "11. Factorial",
                 "12. Potencia",
+                "13. Raiz",
+                "14. iva",
+                "15. Cerrar calculadora",
         };
 
         DecimalFormat df = new DecimalFormat("#.##########"); // Hasta 10 decimales máx.
@@ -247,8 +276,20 @@ public class Calculadora {
         actualNumber =  Math.pow(actualNumber, b);
         showCalculator();
     }
+    //raiz enecima
+    public void raiz (double b){
+        actualNumber = Math.pow(actualNumber, 1/b);
+        showCalculator();
+    }
+    //Porcentaje Iva
+    public void iva (double b){
+        actualNumber = actualNumber *(b/100);
+        showCalculator();
+    }
 
 
+
+    //Vuelve el primer valor a cero
     public void restore(){
         System.out.println("Escribe un numero");
         actualNumber = scanner.nextInt();
@@ -256,5 +297,14 @@ public class Calculadora {
         showCalculator();
     }
 
+
+    public double getActualNumber() {
+        return actualNumber;
+    }
+
+    public void setActualNumber(double value) {
+        this.actualNumber = value;
+        this.operation = "";
+    }
 
 }

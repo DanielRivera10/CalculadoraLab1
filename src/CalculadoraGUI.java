@@ -87,7 +87,20 @@ public class CalculadoraGUI extends JFrame {
                 display.setText(display.getText() + entrada);
                 return;
             }
-            if (entrada.equals("+") || entrada.equals("-") || entrada.equals("*") || entrada.equals("/")) {
+
+            if (entrada.equals("-")) {
+                if (display.getText().isBlank()) {
+                    display.setText("-");
+                    return;
+                } else {
+                    calc.setActualNumber(Double.parseDouble(display.getText()));
+                    pendingOp = "-";
+                    display.setText("");
+                    return;
+                }
+            }
+
+            if (entrada.equals("+") || entrada.equals("*") || entrada.equals("/")) {
                 if (!display.getText().isBlank()) {
                     calc.setActualNumber(Double.parseDouble(display.getText()));
                 }
@@ -95,9 +108,17 @@ public class CalculadoraGUI extends JFrame {
                 display.setText("");
                 return;
             }
+
             if (entrada.equals("=")) {
                 if (pendingOp != null && !display.getText().isBlank()) {
                     double segundo = Double.parseDouble(display.getText());
+
+                    if (pendingOp.equals("/") && segundo == 0) {
+                        display.setText("Error: División por 0");
+                        pendingOp = null;
+                        return;
+                    }
+
                     switch (pendingOp) {
                         case "+": calc.suma(segundo); break;
                         case "-": calc.resta(segundo); break;
@@ -137,12 +158,24 @@ public class CalculadoraGUI extends JFrame {
                 if (seleccion.equals("Seno")) calc.seno(calc.getActualNumber());
                 else if (seleccion.equals("Coseno")) calc.coseno(calc.getActualNumber());
                 else if (seleccion.equals("Tangente")) calc.tangente(calc.getActualNumber());
-                else if (seleccion.equals("Factorial")) calc.factorial(calc.getActualNumber());
+                else if (seleccion.equals("Factorial")) {
+                    if (calc.getActualNumber() < 0) {
+                        display.setText("Error: Factorial de negativo");
+                        return;
+                    }
+                    calc.factorial(calc.getActualNumber());
+                }
                 else if (seleccion.equals("Fibonacci")) calc.fibonacci(calc.getActualNumber());
                 else {
                     String input = JOptionPane.showInputDialog(this, "Ingrese segundo valor:");
                     if (input != null) {
                         double segundo = Double.parseDouble(input);
+
+                        if (seleccion.equals("Raiz") && segundo % 2 == 0 && calc.getActualNumber() < 0) {
+                            display.setText("Error: Raíz imaginaria");
+                            return;
+                        }
+
                         switch (seleccion) {
                             case "MCM": calc.mcm(segundo); break;
                             case "MCD": calc.mcd(calc.getActualNumber(), segundo, false); break;

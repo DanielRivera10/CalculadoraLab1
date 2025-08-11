@@ -9,7 +9,7 @@ public class CalculadoraGUI extends JFrame {
     private String pendingOp = null;
 
     public CalculadoraGUI() {
-        setTitle("Calculadora Pro");
+        setTitle("Master Calculator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(420, 520);
         setLocationRelativeTo(null);

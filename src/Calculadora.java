@@ -49,7 +49,7 @@ public class Calculadora {
                     break;
                 case 13: raiz(operatorsOptions("Raiz", "raiz", true));
                     break;
-                case 14: iva(operatorsOptions("porcentaje del iva", "%", true));
+                case 14: iva(operatorsOptions("porcentaje del iva", "% iva", true));
                     break;
                 default:
                     System.out.print(""" 
@@ -72,6 +72,7 @@ public class Calculadora {
                                                               ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢃⠘⡄⠀⠀⠉⠀⠀⣠⣾⠁⠀⠀⣧⣿⣿⡿⠃⠸⠿⣿⣿⣿⣿⣿⣿⠟⠁⣼⣾⠀⠀⠀⠀⢠⠇⠀⠀
                                                               ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠹⣀⣀⣤⣶⣿⡿⠃⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⢻⣿⣷⣦⣤⣤⠎⠀⠀⠀
                                                               ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣤⣿⡿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⠀⠀⠀⠀ """);
+                    flag=false;
                     break;
             }
         }while (flag);
@@ -111,7 +112,6 @@ public class Calculadora {
                 "14. Iva",
                 "15. Cerrar calculadora",
         };
-
         DecimalFormat df = new DecimalFormat("#.##########"); // Hasta 10 decimales máx.
         String screen = operation + df.format(actualNumber);
 
@@ -148,7 +148,6 @@ public class Calculadora {
                 System.out.printf("  ║ %-33s │  %-25s ║%n", "", opcion);
             }
         }
-
         System.out.println("  ╚════════════════════════════════════════════════════════════════╝");
     }
 
